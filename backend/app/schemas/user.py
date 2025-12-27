@@ -5,10 +5,13 @@ from uuid import UUID
 from pydantic import BaseModel, EmailStr, constr
 
 
+UserRoleLiteral = Literal["admin", "manager", "caller", "recruiter", "viewer"]
+
+
 class UserBase(BaseModel):
     email: EmailStr
     full_name: Optional[str] = None
-    role: Literal["admin", "recruiter", "viewer"] = "viewer"
+    role: UserRoleLiteral = "viewer"
     is_active: bool = True
 
 
@@ -16,7 +19,7 @@ class UserCreate(BaseModel):
     email: EmailStr
     full_name: Optional[str] = None
     password: constr(min_length=8)
-    role: Literal["admin", "recruiter", "viewer"] = "recruiter"
+    role: UserRoleLiteral = "recruiter"
 
 
 class UserRead(UserBase):

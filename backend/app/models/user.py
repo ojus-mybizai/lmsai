@@ -9,8 +9,10 @@ from app.models.base import Base, GUID, TimestampMixin
 
 class UserRole(str, enum.Enum):
     admin = "admin"
-    recruiter = "recruiter"
-    viewer = "viewer"
+    manager = "manager"
+    caller = "caller"
+    recruiter = "recruiter"  # legacy
+    viewer = "viewer"  # legacy
 
 
 class User(TimestampMixin, Base):
